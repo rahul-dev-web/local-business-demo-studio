@@ -1,9 +1,14 @@
 export const studioConfig = {
-  name: "YOUR STUDIO",
-  whatsapp: "919999999999",
-  phone: "+919999999999",
+  name: "Rahul Dev Studio",
+  whatsapp: "919981977828",
+  phone: "+919981977828",
+  email: "jarahul989@gmail.com",
+  instagram: "https://www.instagram.com/rahul_jha_builds/",
+  linkedin: "https://www.linkedin.com/in/rahul-kumar-jha-web-dev",
+  github: "https://github.com/rahul-dev-web",
+  location: "",
   whatsappMessage:
-    "Hi, I saw one of your local business website demos and would like to discuss a website for my business.",
+    "Hi Rahul! 👋 Maine aapke local business website demos dekhe hain. Mujhe apne business ke liye ek professional website banwani hai. Kya hum iske baare mein discuss kar sakte hain?",
 };
 
 export function getWhatsAppUrl(message = studioConfig.whatsappMessage) {
