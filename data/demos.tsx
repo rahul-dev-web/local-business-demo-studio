@@ -19,17 +19,27 @@ export function getDemo(slug: string) {
 
 export function DemoCard({ demo }: { demo: (typeof demos)[number] }) {
   const Icon = demo.icon;
-  const href = demo.slug === "clinic" ? "/clinic" : `/demo/${demo.slug}`;
+
   return (
-    <a href={href} className="group rounded-3xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]">
-      <div className="mb-10 flex items-start justify-between">
-        <div className="flex size-12 items-center justify-center rounded-2xl bg-black text-white"><Icon size={21} /></div>
-        <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
+    <a
+      href={`/demo/${demo.slug}`}
+      className="group flex min-h-[126px] flex-col rounded-2xl border border-black/[0.08] bg-white/85 p-3.5 shadow-[0_6px_24px_rgba(0,0,0,.035)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:bg-white hover:shadow-[0_16px_40px_rgba(0,0,0,.08)] sm:min-h-[190px] sm:rounded-3xl sm:p-5 lg:p-6"
+      aria-label={`View ${demo.title} demo`}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#11110f] text-white sm:size-11 sm:rounded-2xl">
+          <Icon size={17} strokeWidth={2.2} className="sm:hidden" aria-hidden="true" />
+          <Icon size={20} strokeWidth={2.2} className="hidden sm:block" aria-hidden="true" />
+        </div>
+        <ArrowUpRight className="size-4 text-black/35 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-black sm:size-5" aria-hidden="true" />
       </div>
-      <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-black/45">{demo.tag}</p>
-      <h3 className="text-xl font-semibold tracking-tight">{demo.title}</h3>
-      <p className="mt-3 text-sm leading-6 text-black/55">{demo.description}</p>
-      <div className="mt-7 text-sm font-semibold">View demo <span aria-hidden>→</span></div>
+
+      <div className="mt-auto pt-5 sm:pt-10">
+        <p className="mb-1 text-[8px] font-bold uppercase tracking-[0.16em] text-black/40 sm:mb-2 sm:text-[10px] sm:tracking-[0.18em]">{demo.tag}</p>
+        <h3 className="text-[14px] font-extrabold leading-[1.05] tracking-[-0.035em] sm:text-xl sm:font-semibold sm:tracking-tight">{demo.title}</h3>
+        <p className="mt-2 hidden text-sm leading-6 text-black/55 sm:block">{demo.description}</p>
+        <div className="mt-3 text-[10px] font-bold uppercase tracking-[0.08em] text-black/55 sm:mt-6 sm:text-sm sm:normal-case sm:tracking-normal sm:text-black">View demo <span aria-hidden>→</span></div>
+      </div>
     </a>
   );
 }
