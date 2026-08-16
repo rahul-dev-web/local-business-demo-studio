@@ -19,8 +19,9 @@ export function getDemo(slug: string) {
 
 export function DemoCard({ demo }: { demo: (typeof demos)[number] }) {
   const Icon = demo.icon;
+  const href = demo.slug === "clinic" ? "/clinic" : `/demo/${demo.slug}`;
   return (
-    <a href={`/demo/${demo.slug}`} className="group rounded-3xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]">
+    <a href={href} className="group rounded-3xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]">
       <div className="mb-10 flex items-start justify-between">
         <div className="flex size-12 items-center justify-center rounded-2xl bg-black text-white"><Icon size={21} /></div>
         <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} />
