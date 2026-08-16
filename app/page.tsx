@@ -10,30 +10,10 @@ export default function Home() {
         <a href="/" className="font-black tracking-[-0.04em]">YOUR<span className="text-black/35">STUDIO</span></a>
         <a href="#demos" className="hidden text-sm font-semibold sm:block">Explore demos ↓</a>
       </nav>
-
-      <section className="mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24">
-        <div className="max-w-4xl">
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-black/60"><Sparkles size={14} /> Website demos for local business</div>
-          <h1 className="text-5xl font-black tracking-[-0.065em] sm:text-7xl lg:text-[7.5rem] lg:leading-[0.88]">Websites built<br /><span className="text-black/30">for local</span> business.</h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-black/55 sm:text-xl">Explore polished, conversion-focused website concepts made for the businesses people discover every day in their local area.</p>
-          <a href="#demos" className="mt-9 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3.5 text-sm font-bold text-white transition-transform hover:scale-[1.02]">Explore website demos <ArrowRight size={17} /></a>
-        </div>
-      </section>
-
-      <section id="demos" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="mb-10 flex items-end justify-between gap-6"><div><p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-black/40">Choose an industry</p><h2 className="text-3xl font-black tracking-[-0.04em] sm:text-5xl">Demo websites for</h2></div><span className="hidden text-sm text-black/40 sm:block">{demos.length} demos · more coming</span></div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{demos.map((demo) => <DemoCard key={demo.slug} demo={demo} />)}</div>
-      </section>
-
-      <section className="border-y border-black/10 bg-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1fr_1.1fr] lg:px-8 lg:py-24">
-          <div><p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-black/40">Built for outcomes</p><h2 className="max-w-xl text-4xl font-black tracking-[-0.05em] sm:text-5xl">Not just a pretty website.</h2><p className="mt-5 max-w-lg leading-7 text-black/55">Every demo is structured around the actions that matter to a local business: calls, messages, visits, bookings and enquiries.</p></div>
-          <div className="grid gap-3 sm:grid-cols-2">{benefits.map((item) => <div key={item} className="flex gap-3 rounded-2xl border border-black/10 p-5 text-sm font-semibold"><Check size={18} className="mt-0.5 shrink-0" />{item}</div>)}</div>
-        </div>
-      </section>
-
+      <section className="mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-8 lg:pb-28 lg:pt-24"><div className="max-w-4xl"><div className="mb-7 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-black/60"><Sparkles size={14} /> Website demos for local business</div><h1 className="text-5xl font-black tracking-[-0.065em] sm:text-7xl lg:text-[7.5rem] lg:leading-[0.88]">Websites built<br /><span className="text-black/30">for local</span> business.</h1><p className="mt-8 max-w-2xl text-lg leading-8 text-black/55 sm:text-xl">Explore polished, conversion-focused website concepts made for the businesses people discover every day in their local area.</p><a href="#demos" className="mt-9 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3.5 text-sm font-bold text-white transition-transform hover:scale-[1.02]">Explore website demos <ArrowRight size={17} /></a></div></section>
+      <section id="demos" className="mx-auto max-w-7xl px-6 py-20 lg:px-8"><div className="mb-10 flex items-end justify-between gap-6"><div><p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-black/40">Choose an industry</p><h2 className="text-3xl font-black tracking-[-0.04em] sm:text-5xl">Demo websites for</h2></div><span className="hidden text-sm text-black/40 sm:block">{demos.length} demos · more coming</span></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{demos.map((demo) => <DemoCard key={demo.slug} demo={demo} />)}</div></section>
+      <section className="border-y border-black/10 bg-white"><div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1fr_1.1fr] lg:px-8 lg:py-24"><div><p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-black/40">Built for outcomes</p><h2 className="max-w-xl text-4xl font-black tracking-[-0.05em] sm:text-5xl">Not just a pretty website.</h2><p className="mt-5 max-w-lg leading-7 text-black/55">Every demo is structured around the actions that matter to a local business: calls, messages, visits, bookings and enquiries.</p></div><div className="grid gap-3 sm:grid-cols-2">{benefits.map((item) => <div key={item} className="flex gap-3 rounded-2xl border border-black/10 p-5 text-sm font-semibold"><Check size={18} className="mt-0.5 shrink-0" />{item}</div>)}</div></div></section>
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28"><div className="rounded-[2rem] bg-black px-7 py-12 text-white sm:px-12 sm:py-16 lg:px-16"><p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/45">Have a business?</p><h2 className="max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-6xl">Like a demo? Let&apos;s make it yours.</h2><p className="mt-5 max-w-xl leading-7 text-white/55">Your real branding, photos, services, pricing, location and contact details — designed around your customers.</p><a href="https://wa.me/919999999999" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d8ff3e] px-6 py-3.5 text-sm font-black text-black">Discuss your website <ArrowRight size={17} /></a></div></section>
-
       <footer className="mx-auto flex max-w-7xl flex-col gap-3 border-t border-black/10 px-6 py-8 text-sm text-black/45 sm:flex-row sm:items-center sm:justify-between lg:px-8"><span>YOUR STUDIO</span><span>Local Business Demo Studio · 2026</span></footer>
     </main>
   );
