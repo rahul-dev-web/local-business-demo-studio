@@ -1,11 +1,7 @@
 import type { ReactNode } from "react";
-
-const STUDIO_WHATSAPP = "919999999999";
-const STUDIO_PHONE = "+919999999999";
+import { getPhoneUrl, getWhatsAppUrl, studioConfig } from "@/lib/studio-config";
 
 export default function DemoLayout({ children }: { children: ReactNode }) {
-  const message = encodeURIComponent("Hi, I saw one of your local business website demos and would like to discuss a website for my business.");
-
   return (
     <>
       {children}
@@ -16,8 +12,8 @@ export default function DemoLayout({ children }: { children: ReactNode }) {
             <p className="truncate text-xs text-black/45">Let&apos;s customise it for your business.</p>
           </div>
           <div className="ml-auto flex gap-2">
-            <a href={`tel:${STUDIO_PHONE}`} aria-label="Call the studio" className="rounded-xl border border-black/10 px-4 py-2.5 text-xs font-bold transition hover:bg-black hover:text-white">Call</a>
-            <a href={`https://wa.me/${STUDIO_WHATSAPP}?text=${message}`} target="_blank" rel="noopener noreferrer" aria-label="Discuss your website on WhatsApp" className="rounded-xl bg-black px-4 py-2.5 text-xs font-bold text-white transition hover:scale-[1.02]">WhatsApp</a>
+            <a href={getPhoneUrl()} aria-label={`Call ${studioConfig.name}`} className="rounded-xl border border-black/10 px-4 py-2.5 text-xs font-bold transition hover:bg-black hover:text-white">Call</a>
+            <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" aria-label={`Discuss your website with ${studioConfig.name} on WhatsApp`} className="rounded-xl bg-black px-4 py-2.5 text-xs font-bold text-white transition hover:scale-[1.02]">WhatsApp</a>
           </div>
         </div>
       </div>
