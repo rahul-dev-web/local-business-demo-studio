@@ -2,20 +2,51 @@
 
 A sales-focused showcase platform for presenting polished website demos to local and small businesses.
 
-## Phase 0
+## Stack
 
-- Next.js + TypeScript
+- Next.js 15 + React 19
+- TypeScript
 - App Router
 - Tailwind CSS
-- Reusable component architecture
-- Industry demo configuration
-- Responsive-first design
-- Single-branch workflow (`main`)
+- Lucide icons
+- Responsive-first architecture
+- Repository abstraction for personalized demos
+- Supabase-ready business profile schema
+- Dynamic sitemap, robots policy, favicon and web manifest
 
-## Planned demos
+## Demo industries
 
 Restaurant, Salon, Gym, Clinic, Coaching, Hotel, Bakery, Retail, Automobile, and Real Estate.
 
+## Routes
+
+- `/` — studio demo hub
+- `/restaurant`, `/salon`, `/gym`, `/clinic`, `/coaching` — primary industry demos
+- `/hotel`, `/bakery`, `/retail`, `/automobile`, `/real-estate` — additional industry demos
+- `/client/[business]` — personalized client previews
+
 ## Development
 
-This repository intentionally uses a single `main` branch during the initial build phase.
+```bash
+npm install
+npm run dev
+```
+
+Production checks:
+
+```bash
+npm run lint
+npm run build
+```
+
+## CI
+
+GitHub Actions runs linting and a production build on pushes and pull requests targeting `main`.
+
+## Data architecture
+
+Personalized demos currently use the local data adapter through `DemoRepository`. The repository contract and `supabase/schema.sql` are prepared for a future Supabase-backed implementation without coupling the page layer to the database.
+
+## Branch policy
+
+This project intentionally uses a **single `main` branch** during the initial build and sales-demo development phase.
