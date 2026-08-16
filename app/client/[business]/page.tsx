@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, MapPin, MessageCircle, Phone } from "lucide-react";
-import { getPersonalizedDemo, personalizedDemos } from "@/data/personalized-demos";
+import { getPersonalizedDemo, getPersonalizedDemoSlugs } from "@/data/personalized-demos";
 
 export function generateStaticParams() {
-  return personalizedDemos.map((demo) => ({ business: demo.slug }));
+  return getPersonalizedDemoSlugs().map((business) => ({ business }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ business: string }> }) {
@@ -19,10 +19,10 @@ export default async function PersonalizedDemoPage({ params }: { params: Promise
   const demo = getPersonalizedDemo(business);
   if (!demo) notFound();
 
-  const whatsapp = `https://wa.me/${demo.whatsapp}?text=${encodeURIComponent(`Hi, I would like to enquire about ${demo.businessName}.`)}`;
+  const whatsapp = `https://wa.me/${demo.whatsapp}?text=${encodeURIComponent(`Hi, I saw the ${demo.category.toLowerCase()} website preview for ${demo.businessName}. I would like a similar website for my business.`)}`;
 
   return (
-    <main className="min-h-screen bg-[#f6f3ed] text-[#171614] pb-24">
+    <main className="min-h-screen bg-[#f6f3ed] pb-24 text-[#171614]">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
         <a href="/" className="inline-flex items-center gap-2 text-sm font-bold"><ArrowLeft size={16} /> Demo Studio</a>
         <span className="rounded-full bg-black px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white">Private preview</span>
@@ -33,7 +33,7 @@ export default async function PersonalizedDemoPage({ params }: { params: Promise
           <div className="grid min-h-[620px] lg:grid-cols-[1.05fr_.95fr]">
             <div className="flex flex-col justify-between p-8 sm:p-12 lg:p-16">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-white/40">{demo.category} website preview</p>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-white/40">{demo.websiteLabel ?? `${demo.category} website preview`}</p>
                 <h1 className="mt-7 max-w-3xl text-5xl font-black tracking-[-0.06em] sm:text-7xl lg:text-[6.5rem] lg:leading-[0.88]">{demo.businessName}</h1>
                 <p className="mt-7 max-w-xl text-lg leading-8 text-white/55">{demo.tagline}</p>
               </div>
@@ -55,7 +55,7 @@ export default async function PersonalizedDemoPage({ params }: { params: Promise
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
-          <div><p className="text-xs font-black uppercase tracking-[0.2em] text-black/35">Customised preview</p><h2 className="mt-3 text-4xl font-black tracking-[-0.055em] sm:text-5xl">Built around {demo.businessName}.</h2><p className="mt-5 leading-7 text-black/50">The same sales-demo system can be personalised with your client&apos;s real identity before the sales conversation.</p></div>
+          <div><p className="text-xs font-black uppercase tracking-[0.2em] text-black/35">Customised preview</p><h2 className="mt-3 text-4xl font-black tracking-[-0.055em] sm:text-5xl">Built around {demo.businessName}.</h2><p className="mt-5 leading-7 text-black/50">The same sales-demo system can be personalised with a prospect&apos;s real identity before the sales conversation.</p></div>
           <div className="grid gap-3 sm:grid-cols-2">{demo.services.map((service) => <div key={service} className="rounded-2xl border border-black/10 bg-white p-6"><Check size={18} /><p className="mt-10 font-bold">{service}</p></div>)}</div>
         </div>
       </section>
