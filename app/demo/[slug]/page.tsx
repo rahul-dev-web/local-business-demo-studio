@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, Clock3, MapPin, MessageCircle, Phone, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
 import { demos, getDemo } from "@/data/demos";
 
 const WHATSAPP = "https://wa.me/919981977828";
@@ -19,6 +19,11 @@ type DemoContent = {
   cta: string;
 };
 
+type IndustryVisuals = {
+  signature: string[];
+  services: string[];
+};
+
 const content: Record<string, DemoContent> = {
   restaurant: { eyebrow: "A modern dining experience", headline: "Good food. Great moments. Right around the corner.", intro: "A warm, visual restaurant website built to help local customers discover the menu, trust the experience and get in touch.", services: ["Signature menu & chef picks", "Private dining & reservations", "Photo-led food gallery", "Opening hours & directions"], accent: "bg-[#fff8ec]", sectionTitle: "A menu worth stopping for.", sectionText: "Give your best dishes the attention they deserve with a visual menu customers can scan quickly on mobile.", image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=84", signatureLabel: "From the kitchen", signatureItems: ["Chef picks", "Family favourites", "Freshly prepared", "Easy reservations"], navPrimary: "Menu", cta: "Book a table" },
   salon: { eyebrow: "Beauty, grooming & confidence", headline: "Look good. Feel confident. Book in minutes.", intro: "A premium salon experience designed to showcase your work, services and style while making appointments simple.", services: ["Services & transparent pricing", "Stylist profiles & portfolio", "Packages & seasonal offers", "Appointment and WhatsApp CTAs"], accent: "bg-[#fbf1ed]", sectionTitle: "Show the work that sells the service.", sectionText: "A visual portfolio gives new customers a reason to trust your skill before they book.", image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=84", signatureLabel: "Signature services", signatureItems: ["Hair & styling", "Colour & treatments", "Bridal & occasion", "Grooming"], navPrimary: "Services", cta: "Book appointment" },
@@ -30,6 +35,135 @@ const content: Record<string, DemoContent> = {
   retail: { eyebrow: "Your neighbourhood store", headline: "Bring your local store online without losing its personality.", intro: "A clean retail showcase for products, offers, directions and direct customer enquiries.", services: ["Featured products", "Offers & new arrivals", "Store information", "Direct enquiries"], accent: "bg-[#eef4ff]", sectionTitle: "A digital window into your store.", sectionText: "Feature the products people come looking for and make it easy to ask about availability or visit the shop.", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=84", signatureLabel: "Shop highlights", signatureItems: ["New arrivals", "Best sellers", "Offers", "Visit store"], navPrimary: "Products", cta: "Ask about a product" },
   automobile: { eyebrow: "Reliable service, every time", headline: "Build trust before the customer reaches your garage.", intro: "A service-focused automotive website that makes packages, expertise, reviews and bookings easy to understand.", services: ["Service packages", "Workshop expertise", "Customer reviews", "Service booking"], accent: "bg-[#f0f2f5]", sectionTitle: "Make the next service decision easy.", sectionText: "Clear packages and a direct booking action help customers understand what they need before they call.", image: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=84", signatureLabel: "Workshop services", signatureItems: ["Periodic service", "AC & diagnostics", "Detailing", "Repairs"], navPrimary: "Services", cta: "Book a service" },
   "real-estate": { eyebrow: "Find the right place", headline: "Property discovery designed around qualified enquiries.", intro: "A premium property experience for presenting listings, locations and the details buyers need before they call.", services: ["Featured properties", "Property details", "Location highlights", "Lead capture"], accent: "bg-[#edf8f2]", sectionTitle: "Show the property before the site visit.", sectionText: "Strong photography, useful property details and location context turn a listing into a serious enquiry.", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=84", signatureLabel: "Property discovery", signatureItems: ["Featured homes", "Key details", "Neighbourhood", "Schedule a visit"], navPrimary: "Properties", cta: "Schedule a visit" },
+};
+
+const industryVisuals: Record<string, IndustryVisuals> = {
+  salon: {
+    signature: [
+      "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1500840216050-6ffa99d75160?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  gym: {
+    signature: [
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1571380409557-1c7f4c0e2a5d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  clinic: {
+    signature: [
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1580281658628-3b9d1a5c0f85?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  coaching: {
+    signature: [
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  hotel: {
+    signature: [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  bakery: {
+    signature: [
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1587241321921-91a834d3c9a1?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1559622215-9f2f3f4d0f98?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  retail: {
+    signature: [
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  automobile: {
+    signature: [
+      "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
+  "real-estate": {
+    signature: [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=82",
+    ],
+    services: [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=82",
+      "https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=900&q=82",
+    ],
+  },
 };
 
 const restaurantMenu = [
@@ -62,10 +196,15 @@ function RestaurantExperience() {
   </>;
 }
 
-function GenericExperience({ data }: { data: DemoContent }) {
+function ImageCard({ label, image, index, compact = false }: { label: string; image: string; index: number; compact?: boolean }) {
+  return <article className={`group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl ${compact ? "" : "min-h-full"}`}><div className="relative aspect-[1.35] overflow-hidden bg-black/5"><div className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105" style={{ backgroundImage: `url(${image})` }} /><div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" /><span className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-black/65 backdrop-blur">0{index + 1}</span></div><div className="p-4 sm:p-5"><p className="text-sm font-black leading-5 sm:text-base">{label}</p><p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/35">Website section</p></div></article>;
+}
+
+function GenericExperience({ data, slug }: { data: DemoContent; slug: string }) {
+  const visuals = industryVisuals[slug];
   return <>
-    <section id="experience" className="border-y border-black/10 bg-white"><div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"><div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end"><div><p className="text-[10px] font-black uppercase tracking-[0.22em] text-black/35">{data.signatureLabel}</p><h2 className="mt-3 text-3xl font-black tracking-[-0.055em] sm:text-5xl">{data.sectionTitle}</h2><p className="mt-4 max-w-xl text-sm leading-6 text-black/50">{data.sectionText}</p></div><div className="grid grid-cols-2 gap-3 sm:grid-cols-4">{data.signatureItems.map((item, index) => <div key={item} className="rounded-2xl border border-black/10 bg-[#fafafa] p-4 sm:p-5"><span className="text-[10px] font-black text-black/30">0{index + 1}</span><p className="mt-7 text-sm font-black sm:text-base">{item}</p></div>)}</div></div><div className="mt-8 aspect-[2/1] overflow-hidden rounded-[1.5rem] bg-cover bg-center shadow-[0_24px_70px_rgba(0,0,0,.10)] sm:mt-10" style={{ backgroundImage: `url(${data.image})` }} /></div></section>
-    <section id="about" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{data.services.map((service, index) => <div key={service} className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm sm:p-6"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-black/30">0{index + 1}</span><Check className="mt-8" size={18} /><p className="mt-4 text-sm font-black leading-5 sm:text-base">{service}</p></div>)}</div></section>
+    <section id="experience" className="border-y border-black/10 bg-white"><div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"><div><p className="text-[10px] font-black uppercase tracking-[0.22em] text-black/35">{data.signatureLabel}</p><h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.055em] sm:text-5xl">{data.sectionTitle}</h2><p className="mt-4 max-w-2xl text-sm leading-6 text-black/50">{data.sectionText}</p></div><div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">{data.signatureItems.map((item, index) => <ImageCard key={item} label={item} image={visuals.signature[index]} index={index} />)}</div><div className="mt-8 aspect-[2.2/1] overflow-hidden rounded-[1.5rem] bg-cover bg-center shadow-[0_24px_70px_rgba(0,0,0,.10)] sm:mt-10" style={{ backgroundImage: `url(${data.image})` }} /></div></section>
+    <section id="about" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"><div className="flex items-end justify-between gap-4"><div><p className="text-[10px] font-black uppercase tracking-[0.22em] text-black/35">What this website can include</p><h2 className="mt-3 text-3xl font-black tracking-[-0.055em] sm:text-5xl">Built around the way your customers decide.</h2></div></div><div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">{data.services.map((service, index) => <ImageCard key={service} label={service} image={visuals.services[index]} index={index} compact />)}</div></section>
   </>;
 }
 
@@ -81,10 +220,10 @@ export default async function DemoPage({ params }: { params: Promise<{ slug: str
 
     <section className={`${data.accent} border-y border-black/10`}><div className="mx-auto grid max-w-7xl items-stretch gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[.92fr_1.08fr] lg:gap-12 lg:px-8 lg:py-16">
       <div className="flex flex-col justify-center"><p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/45 sm:text-xs">{data.eyebrow}</p><h1 className="mt-3 max-w-3xl text-[2.8rem] font-black leading-[0.9] tracking-[-0.07em] sm:mt-5 sm:text-6xl lg:text-[5.7rem]">{data.headline}</h1><p className="mt-5 max-w-xl text-sm leading-6 text-black/60 sm:text-lg sm:leading-8">{data.intro}</p><div className="mt-7 flex flex-col gap-2.5 sm:flex-row"><a href="#experience" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-black px-5 text-sm font-black text-white">Explore the website <ArrowRight size={16} /></a><a href={WHATSAPP} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-black/15 bg-white px-5 text-sm font-black text-black">{data.cta} <MessageCircle size={15} /></a></div></div>
-      <div className="relative overflow-hidden rounded-[1.7rem] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,.18)] sm:rounded-[2rem]"><div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${data.image})` }} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/0" /><div className="absolute inset-x-5 top-4 flex items-center justify-between text-white sm:inset-x-6 sm:top-5"><span className="text-[9px] font-black uppercase tracking-[0.18em] text-white/80">{demo.tag}</span><span className="rounded-full bg-white/15 px-2.5 py-1 text-[9px] font-bold backdrop-blur">Website concept</span></div><div className="absolute inset-x-5 bottom-5 text-white sm:inset-x-6 sm:bottom-6"><p className="text-2xl font-black tracking-tight sm:text-4xl">Built around your customers.</p><div className="mt-3 flex flex-wrap gap-2">{data.services.slice(0, 3).map((item) => <span key={item} className="rounded-full bg-white/12 px-2.5 py-1.5 text-[9px] font-bold backdrop-blur">{item}</span>)}</div></div></div>
+      <div className="relative min-h-[360px] overflow-hidden rounded-[1.7rem] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,.18)] sm:min-h-[500px] sm:rounded-[2rem]"><div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${data.image})` }} /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/0" /><div className="absolute inset-x-5 top-4 flex items-center justify-between text-white sm:inset-x-6 sm:top-5"><span className="text-[9px] font-black uppercase tracking-[0.18em] text-white/80">{demo.tag}</span><span className="rounded-full bg-white/15 px-2.5 py-1 text-[9px] font-bold backdrop-blur">Website concept</span></div><div className="absolute inset-x-5 bottom-5 text-white sm:inset-x-6 sm:bottom-6"><p className="text-2xl font-black tracking-tight sm:text-4xl">Built around your customers.</p><div className="mt-3 flex flex-wrap gap-2">{data.services.slice(0, 3).map((item) => <span key={item} className="rounded-full bg-white/12 px-2.5 py-1.5 text-[9px] font-bold backdrop-blur">{item}</span>)}</div></div></div>
     </div></section>
 
-    {slug === "restaurant" ? <RestaurantExperience /> : <GenericExperience data={data} />}
+    {slug === "restaurant" ? <RestaurantExperience /> : <GenericExperience data={data} slug={slug} />}
 
     <section className="border-y border-black/10 bg-[#171717] text-white"><div className="mx-auto grid max-w-7xl gap-3 px-4 py-8 sm:grid-cols-3 sm:px-6 sm:py-12 lg:px-8"><div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.04] p-4"><Clock3 className="shrink-0 text-amber-300" size={19} /><div><p className="text-sm font-bold">Clear information</p><p className="mt-0.5 text-xs text-white/50">Hours, services and important details</p></div></div><div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.04] p-4"><MapPin className="shrink-0 text-amber-300" size={19} /><div><p className="text-sm font-bold">Easy to reach</p><p className="mt-0.5 text-xs text-white/50">Location, directions and contact</p></div></div><div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[.04] p-4"><Phone className="shrink-0 text-amber-300" size={19} /><div><p className="text-sm font-bold">Direct contact</p><p className="mt-0.5 text-xs text-white/50">Call or message without friction</p></div></div></div></section>
 
