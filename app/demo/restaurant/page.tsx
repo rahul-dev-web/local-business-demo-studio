@@ -2,9 +2,27 @@ import { ArrowLeft, ArrowRight, Clock3, MapPin, MessageCircle, Phone, Star } fro
 import { getPhoneUrl, getWhatsAppUrl, studioConfig } from "@/lib/studio-config";
 
 const dishes = [
-  { name: "Truffle Pasta", detail: "Creamy parmesan, wild mushrooms & herbs", price: "₹420" },
-  { name: "Smoked Paneer", detail: "Charred paneer, mint chutney & house spices", price: "₹360" },
-  { name: "Classic Tiramisu", detail: "Espresso, mascarpone & cocoa", price: "₹240" },
+  {
+    name: "Truffle Pasta",
+    detail: "Creamy parmesan, wild mushrooms & herbs",
+    price: "₹420",
+    image: "https://lp-cms-production.imgix.net/2024-08/GettyImages-1594118929.jpg?auto=format&fit=crop&w=1200&q=82",
+    alt: "Creamy truffle pasta topped with shaved truffle",
+  },
+  {
+    name: "Smoked Paneer",
+    detail: "Charred paneer, mint chutney & house spices",
+    price: "₹360",
+    image: "https://reshamdhaba.com/img/menu-16.jpg",
+    alt: "Grilled paneer tikka with vegetables and mint chutney",
+  },
+  {
+    name: "Classic Tiramisu",
+    detail: "Espresso, mascarpone & cocoa",
+    price: "₹240",
+    image: "https://resizer.otstatic.com/v2/photos/xlarge/1/92427562.jpg",
+    alt: "Classic tiramisu dusted with cocoa on a restaurant plate",
+  },
 ];
 
 const features = [
@@ -53,7 +71,18 @@ export default function RestaurantDemo() {
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="flex items-end justify-between gap-3"><div><p className="text-[9px] font-black uppercase tracking-[0.2em] !text-black/40">From the kitchen</p><h2 className="mt-1.5 text-2xl font-black tracking-[-0.055em] sm:text-5xl">Signature plates.</h2></div><span className="hidden text-xs font-semibold !text-black/35 sm:block">Curated menu · 2026</span></div>
         <div className="mt-5 grid gap-2.5 md:grid-cols-3 md:gap-4">
-          {dishes.map((dish) => <article key={dish.name} className="rounded-[1.25rem] border border-black/10 bg-white p-3.5 shadow-[0_8px_30px_rgba(0,0,0,.035)] sm:p-5"><div className="aspect-[16/9] rounded-[0.9rem] bg-[radial-gradient(circle_at_35%_35%,#e9c98f,#a76e3f_45%,#34241c_100%)]" /><div className="mt-3 flex items-start justify-between gap-3"><div><h3 className="text-base font-black tracking-tight sm:text-lg">{dish.name}</h3><p className="mt-1 text-[11px] leading-5 !text-black/45">{dish.detail}</p></div><span className="shrink-0 text-xs font-black">{dish.price}</span></div></article>)}
+          {dishes.map((dish) => (
+            <article key={dish.name} className="group overflow-hidden rounded-[1.25rem] border border-black/10 bg-white p-3.5 shadow-[0_8px_30px_rgba(0,0,0,.035)] sm:p-5">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[0.9rem] bg-[#e9dfd3]">
+                <img src={dish.image} alt={dish.alt} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
+              <div className="mt-3 flex items-start justify-between gap-3">
+                <div><h3 className="text-base font-black tracking-tight sm:text-lg">{dish.name}</h3><p className="mt-1 text-[11px] leading-5 !text-black/45">{dish.detail}</p></div>
+                <span className="shrink-0 text-xs font-black">{dish.price}</span>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
