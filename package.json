@@ -1,6 +1,6 @@
 {
   "name": "local-business-demo-studio",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,21 +9,21 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "lucide-react": "^0.468.0",
-    "next": "^15.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "lucide-react": "0.468.0",
+    "next": "15.5.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@tailwindcss/postcss": "^4.1.12",
-    "@types/node": "^22.10.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "eslint": "^9.17.0",
-    "eslint-config-next": "^15.5.0",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^4.1.12",
-    "typescript": "^5.7.0"
+    "@eslint/eslintrc": "3.2.0",
+    "@tailwindcss/postcss": "4.1.12",
+    "@types/node": "22.10.0",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "eslint": "9.17.0",
+    "eslint-config-next": "15.5.0",
+    "postcss": "8.4.49",
+    "tailwindcss": "4.1.12",
+    "typescript": "5.7.0"
   }
 }
