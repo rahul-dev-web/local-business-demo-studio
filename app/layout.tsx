@@ -3,6 +3,7 @@ import "./globals.css";
 
 const SITE_URL = "https://local-business-demo-blue.vercel.app";
 const RDS_LOGO_URL = "https://raw.githubusercontent.com/rahul-dev-web/Rahul-Dev-Studio/main/public/brand/logo.png";
+const CHANNEL_URL = "https://whatsapp.com/channel/0029VbCaUAIKQuJSdCcDnL2m";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,7 +41,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>{children}<a className="studio-channel-link" href={CHANNEL_URL} target="_blank" rel="noreferrer" aria-label="Follow Rahul Development Studio updates on WhatsApp Channel"><span className="studio-channel-dot" aria-hidden="true" />Studio updates <span aria-hidden="true">↗</span></a></body>
     </html>
   );
 }
