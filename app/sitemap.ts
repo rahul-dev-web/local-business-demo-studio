@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  const personalizedRoutes = getPersonalizedDemoSlugs().map((slug) => ({
+  const personalizedRoutes = [...getPersonalizedDemoSlugs(), "v-square"].map((slug) => ({
     url: `${baseUrl}/client/${slug}`,
     changeFrequency: "weekly" as const,
     priority: 0.7,
