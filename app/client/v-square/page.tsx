@@ -149,11 +149,11 @@ export const metadata = {
 
 export default function VSquareWebsite() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f6f3ed] text-[#22201d]">
+    <main className="vsquare-site min-h-screen overflow-hidden bg-[#f6f3ed] pb-24 text-[#22201d] sm:pb-0">
       <div className="bg-[#24221f] px-4 py-2.5 text-white sm:px-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 text-[9px] font-semibold uppercase tracking-[0.16em] sm:text-[10px]">
           <span className="truncate text-white/65">V-SQUARE · Saddu, Raipur</span>
-          <span className="shrink-0 text-white/85">Website concept · RDS Studio</span>
+          <span className="hidden shrink-0 text-white/85 sm:block">Website concept · RDS Studio</span>
         </div>
       </div>
 
@@ -200,7 +200,7 @@ export default function VSquareWebsite() {
             href={mapsUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#292622] px-4 text-[10px] font-bold text-white transition hover:bg-[#a15f47] sm:min-h-11 sm:px-5 sm:text-xs"
+            className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-[#292622] px-3.5 text-[9px] font-bold text-white transition hover:bg-[#a15f47] sm:min-h-11 sm:gap-2 sm:px-5 sm:text-xs"
           >
             Visit store <ArrowUpRight size={14} />
           </a>
@@ -208,13 +208,13 @@ export default function VSquareWebsite() {
       </header>
 
       <section id="top" className="relative border-b border-black/[0.08]">
-        <div className="mx-auto grid max-w-7xl lg:min-h-[650px] lg:grid-cols-[0.88fr_1.12fr]">
-          <div className="flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:min-h-[650px] lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="order-2 flex flex-col justify-center px-5 pb-12 pt-9 sm:px-8 sm:pb-16 sm:pt-12 lg:order-1 lg:px-12 lg:py-24">
             <p className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9b634c]">
               <span className="h-px w-8 bg-[#9b634c]" />
               Clothing for every chapter
             </p>
-            <h1 className="mt-7 max-w-[620px] font-serif text-[3.55rem] leading-[0.94] tracking-[-0.065em] sm:text-7xl lg:text-[5.8rem]">
+            <h1 className="sr-only mt-7 max-w-[620px] font-serif text-[3.55rem] leading-[0.94] tracking-[-0.065em] lg:not-sr-only sm:text-7xl lg:text-[5.8rem]">
               A wardrobe for every version of you.
             </h1>
             <p className="mt-7 max-w-lg text-sm leading-7 text-[#6f6961] sm:text-base sm:leading-8">
@@ -241,7 +241,7 @@ export default function VSquareWebsite() {
             </div>
           </div>
 
-          <div className="relative min-h-[430px] overflow-hidden bg-[#d9d0c5] sm:min-h-[540px] lg:min-h-full">
+          <div className="order-1 relative min-h-[470px] overflow-hidden bg-[#d9d0c5] sm:min-h-[570px] lg:order-2 lg:min-h-full">
             <Photo
               src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1600&q=88"
               alt="Editorial menswear look"
@@ -250,8 +250,9 @@ export default function VSquareWebsite() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/5" />
             <div className="absolute bottom-6 left-5 right-5 flex items-end justify-between gap-4 text-white sm:bottom-9 sm:left-9 sm:right-9">
               <div>
-                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-white/65">The V-SQUARE edit</p>
-                <p className="mt-2 max-w-sm font-serif text-3xl leading-tight sm:text-4xl">Everyday ease. Occasion-ready style.</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-white/70">The V-SQUARE edit · Raipur</p>
+                <p aria-hidden="true" className="mt-3 max-w-[340px] font-serif text-[2.55rem] leading-[0.99] tracking-[-0.045em] sm:text-5xl lg:hidden">A wardrobe for every version of you.</p>
+                <p className="mt-2 max-w-sm font-serif text-xl leading-tight text-white/90 sm:text-4xl">Everyday ease. Occasion-ready style.</p>
               </div>
               <span className="hidden border border-white/40 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.16em] backdrop-blur-sm sm:inline-flex">
                 Raipur
@@ -280,7 +281,7 @@ export default function VSquareWebsite() {
         </div>
       </section>
 
-      <section id="collections" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
+      <section id="collections" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
         <div className="flex flex-col justify-between gap-7 sm:flex-row sm:items-end">
           <SectionHeading
             label="Explore the collection"
@@ -292,17 +293,17 @@ export default function VSquareWebsite() {
           </a>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+        <div className="vsquare-collection-rail -mx-5 mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 sm:mx-0 sm:mt-10 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-14 lg:grid-cols-4">
           {collections.map((item) => (
             <a
               key={item.number}
               href={item.name === "Occasionwear" ? "#occasionwear" : "#store"}
-              className="group relative block overflow-hidden bg-[#ddd4c9]"
+              className="group relative block w-[78vw] max-w-[340px] shrink-0 snap-start overflow-hidden bg-[#ddd4c9] sm:w-auto sm:max-w-none"
             >
               <Photo
                 src={item.image}
                 alt={item.imageAlt}
-                className="aspect-[0.78] w-full transition duration-700 group-hover:scale-[1.035]"
+                className="aspect-[0.9] w-full transition duration-700 group-hover:scale-[1.035] sm:aspect-[0.78]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
@@ -321,7 +322,7 @@ export default function VSquareWebsite() {
         </p>
       </section>
 
-      <section id="occasionwear" className="bg-[#292622] text-white">
+      <section id="occasionwear" className="scroll-mt-24 bg-[#292622] text-white">
         <div className="mx-auto grid max-w-7xl lg:grid-cols-[1.02fr_0.98fr]">
           <div className="relative min-h-[390px] overflow-hidden sm:min-h-[520px]">
             <Photo
@@ -467,7 +468,7 @@ export default function VSquareWebsite() {
         </div>
       </section>
 
-      <section id="store" className="bg-[#292622] text-white">
+      <section id="store" className="scroll-mt-24 bg-[#292622] text-white">
         <div className="mx-auto grid max-w-7xl gap-9 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:px-12">
           <div className="flex flex-col justify-center">
             <SectionHeading
@@ -553,6 +554,23 @@ export default function VSquareWebsite() {
           <p className="text-[9px] uppercase tracking-[0.12em] text-white/30">Website concept by RDS Studio</p>
         </div>
       </footer>
+
+      <div className="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 gap-2 border-t border-black/10 bg-[#f6f3ed]/95 px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] shadow-[0_-10px_35px_rgba(35,30,25,.08)] backdrop-blur-xl md:hidden">
+        <a
+          href={phoneUrl}
+          className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#292622] px-3 text-[11px] font-bold text-white"
+        >
+          <Phone size={15} /> Call store
+        </a>
+        <a
+          href={mapsUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#292622]/25 bg-transparent px-3 text-[11px] font-bold text-[#292622]"
+        >
+          <MapPin size={15} /> Get directions
+        </a>
+      </div>
     </main>
   );
 }
