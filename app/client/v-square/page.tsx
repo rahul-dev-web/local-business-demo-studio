@@ -492,7 +492,7 @@ export default function VSquareWebsite() {
                 <div>
                   <p className="text-xs font-bold">Store hours</p>
                   <p className="mt-1 text-xs leading-6 text-white/55">
-                    Google Maps currently lists closing time as 9:30 PM. Please call ahead for today's hours.
+                    Google Maps currently lists closing time as 9:30 PM. Please call ahead for today&apos;s hours.
                   </p>
                 </div>
               </div>
