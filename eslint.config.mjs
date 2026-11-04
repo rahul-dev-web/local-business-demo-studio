@@ -11,6 +11,11 @@ const eslintConfig = [
   ...compat.config({
     extends: ["next/core-web-vitals", "next/typescript"],
   }),
+  {
+    rules: {
+      "@next/next/no-html-link-for-pages": "warn",
+    },
+  },
 ];
 
 export default eslintConfig;
