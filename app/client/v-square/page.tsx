@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -6,46 +6,50 @@ import {
   MapPin,
   Phone,
   Star,
+  Scissors,
+  Gem,
+  Shirt,
+  Sparkles,
 } from "lucide-react";
 
 const mapsUrl =
-  "https://www.google.com/maps/search/?api=1&query=V-SQUARE%20Vidhan%20Sabha%20Road%20Saddu%20Raipur&query_place_id=ChIJTYGEzM3nKDoR4w8tySbWcUI";
+  "https://www.google.com/maps/search/?api=1&query=V-SQUARE%20Vidhan%20Sabha%20Rd%2C%20Saddu%2C%20Raipur%2C%20Chhattisgarh%20492014";
 const mapsEmbedUrl =
-  "https://www.google.com/maps?q=place_id:ChIJTYGEzM3nKDoR4w8tySbWcUI&output=embed";
+  "https://www.google.com/maps?q=V-SQUARE,+Vidhan+Sabha+Rd,+Saddu,+Raipur,+Chhattisgarh+492014&output=embed";
 const phoneUrl = "tel:+917713172293";
 
 const collections = [
   {
     number: "01",
     name: "Menswear",
-    detail: "Everyday style, smart separates and occasion dressing.",
+    detail: "Everyday essentials and considered occasion looks.",
     image:
-      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1100&q=86",
-    imageAlt: "Contemporary menswear styling",
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1200&q=88",
+    alt: "Editorial menswear styling",
   },
   {
     number: "02",
     name: "Womenswear",
-    detail: "A considered mix of looks for everyday and special plans.",
+    detail: "Fresh looks for everyday plans and special moments.",
     image:
-      "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1100&q=86",
-    imageAlt: "Contemporary womenswear styling",
+      "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=88",
+    alt: "Contemporary womenswear editorial",
   },
   {
     number: "03",
-    name: "Kidswear",
-    detail: "Style options for the little ones in the family.",
+    name: "Occasionwear",
+    detail: "Polished dressing for celebrations and important days.",
     image:
-      "https://images.unsplash.com/photo-1503919005314-30d93d07d823?auto=format&fit=crop&w=1100&q=86",
-    imageAlt: "Children's clothing",
+      "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=1200&q=88",
+    alt: "Formal occasionwear",
   },
   {
     number: "04",
-    name: "Occasionwear",
-    detail: "Suits, blazers and traditional looks for important moments.",
+    name: "Fabrics",
+    detail: "Explore fabric choices and ask about current availability.",
     image:
-      "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=1100&q=86",
-    imageAlt: "Formal occasionwear",
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1200&q=88",
+    alt: "Tailoring fabric texture",
   },
 ];
 
@@ -63,7 +67,7 @@ const storePhotos = [
   {
     src: "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9QcdEq-Os-onP-EAKDmiapobWvQaSQZxjYtnZgr8wvTYSffVEYnzd_yekfsWDvC22xEB3_gSAKOlT1iNnA0O6CLl24WxgmAfv3rFB9v5h3q6JUKLWTW7c4ACTVAKpDbOqm-e2AoSpp8VFLs=w224-h398-k-no",
     alt: "Latest V-SQUARE photo from Google Maps",
-    label: "Latest from the store",
+    label: "Latest photo",
   },
   {
     src: "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SSibmPRMAo8LEBKiInPwVanHHJkwZKbs4JgOfpDk8Idm3rMzW2-kGRVJ3Rj7G40e_KbpYJO_La1TIlICxVcSZ11Mv3Uj37TH7KW4GOYlrlD8hf7R2t-Dswp09yOROiSuUg1Fc2zQ=w224-h298-k-no",
@@ -89,7 +93,7 @@ function Photo({
       aria-label={alt}
       className={className}
       style={{
-        backgroundImage: "linear-gradient(180deg, transparent 55%, rgba(0,0,0,.28)), url(" + src + ")",
+        backgroundImage: `url("${src}")`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         ...style,
@@ -98,438 +102,412 @@ function Photo({
   );
 }
 
-function SectionHeading({
-  label,
+function SectionIntro({
+  kicker,
   title,
-  text,
-  light = false,
+  body,
+  dark = false,
+  align = "left",
 }: {
-  label: string;
+  kicker: string;
   title: string;
-  text?: string;
-  light?: boolean;
+  body?: string;
+  dark?: boolean;
+  align?: "left" | "center";
 }) {
   return (
-    <div className="max-w-2xl">
+    <div className={`max-w-2xl ${align === "center" ? "mx-auto text-center" : ""}`}>
       <p
-        className={
-          "text-[10px] font-bold uppercase tracking-[0.24em] " +
-          (light ? "text-white/45" : "text-[#9a6049]")
-        }
+        className={`text-[10px] font-bold uppercase tracking-[0.25em] ${
+          dark ? "text-[#d5ad72]" : "text-[#a77b4a]"
+        }`}
       >
-        {label}
+        {kicker}
       </p>
       <h2
-        className={
-          "mt-4 font-serif text-4xl leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-[3.7rem] " +
-          (light ? "text-white" : "text-[#22201d]")
-        }
+        className={`mt-4 font-serif text-4xl leading-[1.03] tracking-[-0.045em] sm:text-5xl lg:text-[3.8rem] ${
+          dark ? "text-[#f8f2e8]" : "text-[#211e19]"
+        }`}
       >
         {title}
       </h2>
-      {text ? (
+      {body ? (
         <p
-          className={
-            "mt-5 max-w-xl text-sm leading-7 sm:text-base " +
-            (light ? "text-white/60" : "text-[#6e6962]")
-          }
+          className={`mt-5 text-sm leading-7 sm:text-base sm:leading-8 ${
+            dark ? "text-white/60" : "text-[#756e64]"
+          }`}
         >
-          {text}
+          {body}
         </p>
       ) : null}
     </div>
   );
 }
 
+function GoldRule() {
+  return <span className="block h-px w-12 bg-[#b98d54]" />;
+}
+
 export const metadata = {
   title: "V-SQUARE | Clothing Store in Saddu, Raipur",
   description:
-    "Explore menswear, womenswear, kidswear and occasionwear at V-SQUARE, Vidhan Sabha Road, Saddu, Raipur.",
+    "Explore clothing collections, fabrics and occasionwear at V-SQUARE, Vidhan Sabha Road, Saddu, Raipur.",
 };
 
 export default function VSquareWebsite() {
   return (
-    <main className="vsquare-site min-h-screen overflow-hidden bg-[#f6f3ed] pb-24 text-[#22201d] sm:pb-0">
-      <div className="bg-[#24221f] px-4 py-2.5 text-white sm:px-6">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 text-[9px] font-semibold uppercase tracking-[0.16em] sm:text-[10px]">
-          <span className="truncate text-white/65">V-SQUARE · Saddu, Raipur</span>
-          <span className="hidden shrink-0 text-white/85 sm:block">Website concept · RDS Studio</span>
+    <main className="min-h-screen overflow-hidden bg-[#11100e] pb-20 text-[#f5efe5] sm:pb-0">
+      <div className="border-b border-white/[0.07] bg-[#0b0a09]">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 sm:px-7 lg:px-12">
+          <p className="truncate text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">
+            Vidhan Sabha Road · Saddu · Raipur
+          </p>
+          <p className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#c9a16b] sm:text-[10px]">
+            Style · Fabric · Occasion
+          </p>
         </div>
       </div>
 
-      <div className="border-b border-black/[0.08] bg-[#eee9e0]">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-5 gap-y-2 px-4 py-2.5 text-[10px] sm:px-6 sm:text-[11px]">
-          <div className="flex items-center gap-2 text-[#5f5a53]">
-            <MapPin size={12} />
-            <span>Vidhan Sabha Road, Saddu, Raipur</span>
-          </div>
-          <div className="flex items-center gap-3 text-[#5f5a53]">
-            <span className="inline-flex items-center gap-1.5 font-semibold">
-              <Star size={12} className="fill-[#a66d4f] text-[#a66d4f]" />
-              4.8 on Google
-            </span>
-            <span className="h-3 w-px bg-black/15" />
-            <span>300+ reviews</span>
-          </div>
-        </div>
-      </div>
-
-      <header className="sticky top-0 z-40 border-b border-black/[0.07] bg-[#f6f3ed]/95 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:py-5">
-          <a href="#top" className="group flex shrink-0 items-center gap-3" aria-label="V-SQUARE home">
-            <span className="flex size-10 items-center justify-center border border-[#292622] text-lg font-serif sm:size-11">
-              V
-            </span>
-            <span>
-              <span className="block text-[17px] font-black leading-none tracking-[0.16em] sm:text-[19px]">
+      <header className="sticky top-0 z-40 border-b border-white/[0.08] bg-[#11100e]/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-5 px-4 py-4 sm:px-7 lg:px-12 lg:py-5">
+          <a href="#top" className="flex shrink-0 items-center gap-3" aria-label="V-SQUARE home">
+            <span className="font-serif text-[2.1rem] leading-none text-[#d6b17c] sm:text-[2.35rem]">V</span>
+            <span className="block border-l border-[#b98d54]/45 pl-3">
+              <span className="block text-[17px] font-semibold leading-none tracking-[0.16em] text-[#f7f0e5] sm:text-[19px]">
                 V-SQUARE
               </span>
-              <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[0.28em] text-[#8b8176]">
-                Style · Fabric · Occasion
+              <span className="mt-1.5 block text-[8px] font-semibold uppercase tracking-[0.26em] text-white/40">
+                Clothing store
               </span>
             </span>
           </a>
 
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
-            <a href="#collections" className="text-xs font-semibold text-[#625d56] transition hover:text-[#a15f47]">Collections</a>
-            <a href="#occasionwear" className="text-xs font-semibold text-[#625d56] transition hover:text-[#a15f47]">Occasionwear</a>
-            <a href="#store" className="text-xs font-semibold text-[#625d56] transition hover:text-[#a15f47]">The store</a>
+          <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+            <a href="#top" className="text-[11px] font-semibold text-white/65 transition hover:text-[#d6b17c]">Home</a>
+            <a href="#collections" className="text-[11px] font-semibold text-white/65 transition hover:text-[#d6b17c]">Collections</a>
+            <a href="#experience" className="text-[11px] font-semibold text-white/65 transition hover:text-[#d6b17c]">The V-SQUARE edit</a>
+            <a href="#reviews" className="text-[11px] font-semibold text-white/65 transition hover:text-[#d6b17c]">Reviews</a>
+            <a href="#store" className="text-[11px] font-semibold text-white/65 transition hover:text-[#d6b17c]">Visit</a>
           </nav>
 
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-[#292622] px-3.5 text-[9px] font-bold text-white transition hover:bg-[#a15f47] sm:min-h-11 sm:gap-2 sm:px-5 sm:text-xs"
-          >
-            Visit store <ArrowUpRight size={14} />
-          </a>
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <a
+              href={phoneUrl}
+              aria-label="Call V-SQUARE"
+              className="hidden size-10 items-center justify-center rounded-full border border-white/15 text-[#d6b17c] transition hover:border-[#d6b17c] hover:bg-white/[0.06] sm:inline-flex"
+            >
+              <Phone size={15} />
+            </a>
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-10 items-center gap-2 rounded-full bg-[#d4b078] px-4 text-[10px] font-bold text-[#17130f] transition hover:bg-[#ecd2a7] sm:min-h-11 sm:px-5 sm:text-[11px]"
+            >
+              Visit store <ArrowUpRight size={13} />
+            </a>
+          </div>
         </div>
       </header>
 
-      <section id="top" className="relative border-b border-black/[0.08]">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:min-h-[650px] lg:grid-cols-[0.88fr_1.12fr]">
-          <div className="order-2 flex flex-col justify-center px-5 pb-12 pt-9 sm:px-8 sm:pb-16 sm:pt-12 lg:order-1 lg:px-12 lg:py-24">
-            <p className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9b634c]">
-              <span className="h-px w-8 bg-[#9b634c]" />
-              Clothing for every chapter
-            </p>
-            <h1 className="sr-only mt-7 max-w-[620px] font-serif text-[3.55rem] leading-[0.94] tracking-[-0.065em] lg:not-sr-only sm:text-7xl lg:text-[5.8rem]">
-              A wardrobe for every version of you.
+      <section id="top" className="relative border-b border-white/[0.08] bg-[#11100e]">
+        <div className="mx-auto grid max-w-[1440px] lg:min-h-[700px] lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="relative z-10 flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:px-14 lg:py-24 xl:px-20">
+            <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.26em] text-[#d6b17c] sm:text-[10px]">
+              <GoldRule />
+              Find your signature style
+            </div>
+            <h1 className="mt-7 max-w-[650px] font-serif text-[3.6rem] leading-[0.93] tracking-[-0.065em] text-[#f5efe5] sm:text-7xl lg:text-[5.9rem] xl:text-[6.55rem]">
+              Style that makes a statement.
             </h1>
-            <p className="mt-7 max-w-lg text-sm leading-7 text-[#6f6961] sm:text-base sm:leading-8">
-              Discover menswear, womenswear and kidswear — from everyday
-              essentials to polished looks for the moments that matter.
+            <p className="mt-7 max-w-lg text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
+              Discover clothing, fabric choices and occasion looks at V-SQUARE,
+              your neighbourhood clothing store in Saddu, Raipur.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#collections"
-                className="inline-flex min-h-12 items-center justify-center gap-3 bg-[#292622] px-6 text-xs font-bold text-white transition hover:bg-[#9b634c]"
+                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#d4b078] px-6 text-xs font-bold text-[#17130f] transition hover:bg-[#ecd2a7]"
               >
                 Explore collections <ArrowRight size={15} />
               </a>
               <a
-                href={phoneUrl}
-                className="inline-flex min-h-12 items-center justify-center gap-2 border border-black/15 px-6 text-xs font-bold text-[#292622] transition hover:border-[#9b634c] hover:text-[#9b634c]"
+                href={mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 px-6 text-xs font-bold text-white transition hover:border-[#d6b17c] hover:text-[#d6b17c]"
               >
-                <Phone size={14} /> Call the store
+                <MapPin size={14} /> Find the store
               </a>
             </div>
-            <div className="mt-12 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#90877c]">
-              <span className="h-px w-10 bg-[#b8aea1]" />
-              Find your fit in Saddu, Raipur
+            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-white/10 pt-6">
+              <div>
+                <p className="font-serif text-3xl text-[#e3c18e]">4.8<span className="ml-1 text-sm text-white/50">/ 5</span></p>
+                <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.17em] text-white/40">Google rating</p>
+              </div>
+              <span className="h-9 w-px bg-white/15" />
+              <div>
+                <p className="font-serif text-3xl text-[#f5efe5]">305</p>
+                <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.17em] text-white/40">Public reviews</p>
+              </div>
+              <span className="h-9 w-px bg-white/15" />
+              <div>
+                <p className="font-serif text-3xl text-[#f5efe5]">9:30</p>
+                <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.17em] text-white/40">Listed closing · PM</p>
+              </div>
             </div>
           </div>
 
-          <div className="order-1 relative min-h-[470px] overflow-hidden bg-[#d9d0c5] sm:min-h-[570px] lg:order-2 lg:min-h-full">
+          <div className="relative min-h-[430px] overflow-hidden border-y border-white/10 bg-[#28221b] sm:min-h-[560px] lg:min-h-full lg:border-y-0 lg:border-l">
             <Photo
-              src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1600&q=88"
-              alt="Editorial menswear look"
+              src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1800&q=90"
+              alt="Fashion editorial showing a tailored menswear look"
               className="absolute inset-0"
+              style={{ backgroundPosition: "center 28%" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/5" />
-            <div className="absolute bottom-6 left-5 right-5 flex items-end justify-between gap-4 text-white sm:bottom-9 sm:left-9 sm:right-9">
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-white/70">The V-SQUARE edit · Raipur</p>
-                <p aria-hidden="true" className="mt-3 max-w-[340px] font-serif text-[2.55rem] leading-[0.99] tracking-[-0.045em] sm:text-5xl lg:hidden">A wardrobe for every version of you.</p>
-                <p className="mt-2 max-w-sm font-serif text-xl leading-tight text-white/90 sm:text-4xl">Everyday ease. Occasion-ready style.</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a09]/90 via-[#0b0a09]/10 to-[#0b0a09]/10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#11100e]/20 via-transparent to-transparent" />
+            <div className="absolute left-5 top-5 flex items-center gap-3 border border-white/20 bg-black/20 px-4 py-3 backdrop-blur-sm sm:left-8 sm:top-8">
+              <span className="font-serif text-2xl text-[#e0bd88]">V.</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/80">The V-SQUARE edit</span>
+            </div>
+            <div className="absolute bottom-7 left-5 right-5 flex items-end justify-between gap-4 sm:bottom-10 sm:left-9 sm:right-9 lg:bottom-12 lg:left-12 lg:right-12">
+              <div className="max-w-sm">
+                <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#e1bd85]">Dress for the moment</p>
+                <p className="mt-3 font-serif text-3xl leading-[1.04] tracking-[-0.035em] text-white sm:text-4xl lg:text-[2.8rem]">
+                  The details are what make the look.
+                </p>
               </div>
-              <span className="hidden border border-white/40 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.16em] backdrop-blur-sm sm:inline-flex">
-                Raipur
+              <span className="hidden border border-white/35 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/80 md:inline-flex">
+                Saddu · Raipur
               </span>
             </div>
-            <div className="absolute right-5 top-5 border border-white/50 bg-black/10 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm sm:right-8 sm:top-8">
-              V / 01
-            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-black/[0.08] bg-[#eae4da]">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-5 px-5 py-7 sm:grid-cols-4 sm:px-8 lg:px-12">
+      <section className="border-b border-white/10 bg-[#181613]">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-y-5 px-5 py-7 sm:grid-cols-4 sm:px-8 lg:px-14 lg:py-8">
           {[
-            ["4.8 / 5", "Google rating"],
-            ["300+", "Customer reviews"],
-            ["For all ages", "Men · Women · Kids"],
-            ["9:30 PM", "Listed closing time"],
-          ].map(([value, label]) => (
-            <div key={label} className="border-l border-black/10 pl-4 first:border-0 first:pl-0 sm:first:border-l sm:first:pl-4">
-              <p className="font-serif text-2xl tracking-tight text-[#2a2723] sm:text-3xl">{value}</p>
-              <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#81786d] sm:text-[10px]">{label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="collections" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
-        <div className="flex flex-col justify-between gap-7 sm:flex-row sm:items-end">
-          <SectionHeading
-            label="Explore the collection"
-            title="Find the look that feels like you."
-            text="A family clothing destination with options across everyday dressing, smart looks and special occasions."
-          />
-          <a href={phoneUrl} className="inline-flex w-fit items-center gap-2 border-b border-[#9b634c] pb-2 text-xs font-bold text-[#7d4c3a] transition hover:gap-3">
-            Ask about availability <ArrowRight size={14} />
-          </a>
-        </div>
-
-        <div className="vsquare-collection-rail -mx-5 mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 sm:mx-0 sm:mt-10 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-14 lg:grid-cols-4">
-          {collections.map((item) => (
-            <a
-              key={item.number}
-              href={item.name === "Occasionwear" ? "#occasionwear" : "#store"}
-              className="group relative block w-[78vw] max-w-[340px] shrink-0 snap-start overflow-hidden bg-[#ddd4c9] sm:w-auto sm:max-w-none"
-            >
-              <Photo
-                src={item.image}
-                alt={item.imageAlt}
-                className="aspect-[0.9] w-full transition duration-700 group-hover:scale-[1.035] sm:aspect-[0.78]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-bold tracking-[0.18em] text-white/65">{item.number}</span>
-                  <ArrowUpRight size={17} className="transition group-hover:-translate-y-1 group-hover:translate-x-1" />
-                </div>
-                <h3 className="mt-7 font-serif text-3xl tracking-[-0.035em] sm:text-[2rem]">{item.name}</h3>
-                <p className="mt-2 max-w-[230px] text-[11px] leading-5 text-white/75">{item.detail}</p>
+            { icon: Gem, title: "Quality fabrics", detail: "Mentioned by shoppers" },
+            { icon: Scissors, title: "Custom tailoring", detail: "A review-highlighted service" },
+            { icon: Shirt, title: "Style selection", detail: "Looks for different occasions" },
+            { icon: Sparkles, title: "Helpful service", detail: "A recurring review theme" },
+          ].map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.title} className={`flex items-center gap-3 px-1 sm:px-4 ${index > 0 ? "sm:border-l sm:border-white/10" : ""}`}>
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-[#b98d54]/35 text-[#d6b17c] sm:size-11">
+                  <Icon size={17} strokeWidth={1.5} />
+                </span>
+                <span>
+                  <span className="block text-[11px] font-semibold text-white/90 sm:text-xs">{item.title}</span>
+                  <span className="mt-1 block text-[9px] leading-4 text-white/40 sm:text-[10px]">{item.detail}</span>
+                </span>
               </div>
-            </a>
-          ))}
+            );
+          })}
         </div>
-        <p className="mt-4 text-[10px] leading-5 text-[#958c80]">
-          Collection photographs are illustrative; ask the store about current styles and availability.
-        </p>
       </section>
 
-      <section id="occasionwear" className="scroll-mt-24 bg-[#292622] text-white">
-        <div className="mx-auto grid max-w-7xl lg:grid-cols-[1.02fr_0.98fr]">
+      <section id="collections" className="bg-[#11100e]">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 sm:py-20 lg:px-14 lg:py-28">
+          <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+            <SectionIntro
+              kicker="Explore the collection"
+              title="A look for every occasion."
+              body="Browse the style directions and ask the store team about the latest collection, available fabrics and fitting options."
+              dark
+            />
+            <a href={phoneUrl} className="inline-flex w-fit items-center gap-2 border-b border-[#b98d54] pb-2 text-[11px] font-bold text-[#d6b17c] transition hover:gap-3">
+              Ask about availability <ArrowRight size={14} />
+            </a>
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 lg:grid-cols-4">
+            {collections.map((item) => (
+              <a key={item.number} href="#store" className="group relative block overflow-hidden border border-white/10 bg-[#211d18]">
+                <Photo
+                  src={item.image}
+                  alt={item.alt}
+                  className="aspect-[0.78] w-full transition duration-700 group-hover:scale-[1.04]"
+                  style={{ backgroundPosition: "center" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 lg:p-6">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-semibold tracking-[0.18em] text-white/55">{item.number}</span>
+                    <ArrowUpRight size={15} className="text-[#d6b17c] transition group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  </div>
+                  <h3 className="mt-5 font-serif text-2xl leading-tight text-white sm:mt-7 sm:text-3xl">{item.name}</h3>
+                  <p className="mt-2 hidden text-[10px] leading-5 text-white/55 sm:block">{item.detail}</p>
+                  <span className="mt-3 inline-block text-[9px] font-bold uppercase tracking-[0.16em] text-[#d6b17c] sm:mt-4">Discover more</span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p className="mt-4 text-[9px] leading-5 text-white/35">
+            Editorial photographs are for visual inspiration. Please contact the store to confirm current styles and availability.
+          </p>
+        </div>
+      </section>
+
+      <section id="experience" className="border-y border-white/10 bg-[#1b1814]">
+        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.05fr_.95fr]">
           <div className="relative min-h-[390px] overflow-hidden sm:min-h-[520px]">
             <Photo
-              src="https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=1400&q=86"
-              alt="Formal suit and occasionwear inspiration"
+              src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1400&q=88"
+              alt="Close-up of tailored clothing fabric"
               className="absolute inset-0"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            <span className="absolute bottom-6 left-6 text-[9px] font-bold uppercase tracking-[0.2em] text-white/75 sm:bottom-9 sm:left-9">
-              Occasionwear · The finishing touch
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <span className="absolute bottom-6 left-6 text-[9px] font-bold uppercase tracking-[0.22em] text-white/70 sm:bottom-9 sm:left-9">
+              Fabric · Form · Finish
             </span>
           </div>
           <div className="flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-14 xl:px-20">
-            <SectionHeading
-              label="For the moments that matter"
-              title="Make the occasion yours."
-              text="From sharp suits and blazers to traditional occasion looks, discover styles for celebrations, gatherings and the days you want to remember."
-              light
+            <SectionIntro
+              kicker="The V-SQUARE experience"
+              title="It’s all in the fit, feel and finish."
+              body="Customer feedback highlights quality fabrics, a varied clothing selection and custom tailoring. Visit the store to explore the options available."
+              dark
             />
-            <div className="mt-9 grid grid-cols-2 gap-x-5 gap-y-4 border-t border-white/15 pt-6">
-              {["Suits & blazers", "Wedding occasions", "Smart formals", "Traditional looks"].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-[11px] font-medium text-white/75">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#c08a6d]" />
+            <div className="mt-9 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-white/10 pt-6">
+              {[
+                "Premium fabric choices",
+                "Custom-fit enquiries",
+                "Designer outfit selection",
+                "Value-conscious shopping",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-2 text-[10px] leading-5 text-white/70 sm:text-xs">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[#c99c62]" />
                   {item}
                 </div>
               ))}
             </div>
-            <a
-              href={phoneUrl}
-              className="mt-9 inline-flex min-h-12 w-fit items-center gap-3 border border-white/30 px-5 text-xs font-bold transition hover:border-white hover:bg-white hover:text-[#292622]"
-            >
-              Enquire about occasionwear <ArrowUpRight size={14} />
+            <a href={phoneUrl} className="mt-9 inline-flex min-h-11 w-fit items-center gap-3 border border-[#d6b17c]/55 px-5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#e3c18e] transition hover:bg-[#d6b17c] hover:text-[#17130f]">
+              Call to enquire <ArrowUpRight size={14} />
             </a>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-20 lg:px-12 lg:py-28">
-        <div>
-          <SectionHeading
-            label="Fabric & finish"
-            title="Good style starts with the details."
-            text="Explore suiting and shirting fabric options, and speak with the store team about what is currently available."
-          />
-          <div className="mt-8 border-t border-black/10 pt-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#8c8176]">At V-SQUARE</p>
-            <p className="mt-2 max-w-md text-sm leading-7 text-[#6e6962]">
-              A selection that brings together ready-to-wear clothing, fabric choices and looks for different occasions.
-            </p>
-            <a href={phoneUrl} className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-[#89543e] hover:gap-3">
-              Call to ask about fabrics <ArrowRight size={14} />
-            </a>
-          </div>
-        </div>
-        <div className="grid grid-cols-[1.08fr_.92fr] gap-3 sm:gap-4">
-          <Photo
-            src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1000&q=86"
-            alt="Close-up of folded clothing and fabric textures"
-            className="aspect-[0.76] bg-[#ded5ca]"
-          />
-          <div className="flex flex-col gap-3 sm:gap-4">
-            <Photo
-              src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=86"
-              alt="Contemporary fashion editorial"
-              className="aspect-[1.18] flex-1 bg-[#ded5ca]"
-            />
-            <div className="flex flex-1 flex-col justify-between bg-[#eae4da] p-4 sm:p-6">
-              <span className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#8b604c]">Style note</span>
-              <p className="mt-5 font-serif text-2xl leading-tight tracking-[-0.035em] text-[#292622] sm:text-3xl">
-                The right detail changes the whole look.
-              </p>
-              <span className="mt-5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#93887c]">V-SQUARE · Raipur</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-black/[0.08] bg-[#eae4da]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[0.65fr_1.35fr] lg:items-center lg:gap-16 lg:px-12">
+      <section id="reviews" className="bg-[#11100e]">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[.65fr_1.35fr] lg:items-center lg:gap-20 lg:px-14 lg:py-28">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#9b634c]">A local favourite</p>
-            <p className="mt-4 font-serif text-6xl tracking-[-0.06em] text-[#292622] sm:text-7xl">4.8<span className="ml-2 text-2xl text-[#a16b50]">/ 5</span></p>
-            <div className="mt-3 flex gap-1 text-[#a66d4f]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#d6b17c]">Customer feedback</p>
+            <p className="mt-5 font-serif text-7xl leading-none tracking-[-0.06em] text-[#f6efe5] sm:text-8xl">4.8<span className="ml-2 text-2xl text-[#d6b17c]">/ 5</span></p>
+            <div className="mt-5 flex gap-1 text-[#d6b17c]">
               {Array.from({ length: 5 }).map((_, index) => (
-                <Star key={index} size={15} className="fill-current" />
+                <Star key={index} size={16} className="fill-current" />
               ))}
             </div>
-            <p className="mt-3 text-xs text-[#81786d]">Based on 300+ public customer reviews.</p>
-          </div>
-          <div className="border-l border-black/10 pl-6 sm:pl-10">
-            <p className="font-serif text-2xl leading-[1.25] tracking-[-0.025em] text-[#39342e] sm:text-4xl">
-              “Stylish collection, great options for menswear and a helpful team.”
-            </p>
-            <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#8c8176]">
-              A summary of recurring public review themes
-            </p>
-            <p className="mt-3 max-w-xl text-xs leading-6 text-[#7a7168]">
-              Shoppers frequently mention the clothing selection, fabric quality and value. Individual experiences may vary.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
-        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <SectionHeading
-            label="Inside V-SQUARE"
-            title="A closer look at the store."
-            text="A few views from the store's public Google Maps photo listing."
-          />
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex w-fit items-center gap-2 text-xs font-bold text-[#89543e] hover:gap-3"
-          >
-            View on Google Maps <ArrowUpRight size={14} />
-          </a>
-        </div>
-        <div className="mt-9 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-4 sm:gap-4">
-          {storePhotos.map((photo, index) => (
-            <a
-              key={photo.src}
-              href={mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group block"
-              aria-label={photo.alt}
-            >
-              <Photo
-                src={photo.src}
-                alt={photo.alt}
-                className={
-                  "aspect-[0.82] overflow-hidden bg-[#ded5ca] transition duration-500 group-hover:scale-[1.015] " +
-                  (index === 0 ? "sm:aspect-[0.9]" : "")
-                }
-              />
-              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.13em] text-[#766e64]">
-                {photo.label}
-              </p>
+            <p className="mt-3 text-xs text-white/45">305 public Google reviews, as shown in the supplied listing.</p>
+            <a href={mapsUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#d6b17c] hover:gap-3">
+              Read Google reviews <ArrowUpRight size={13} />
             </a>
-          ))}
+          </div>
+          <div className="relative border-y border-white/10 py-8 sm:py-10 lg:border-l lg:border-y-0 lg:py-5 lg:pl-12">
+            <span className="absolute -top-4 left-0 font-serif text-6xl text-[#b98d54]/45 lg:left-12">“</span>
+            <blockquote className="max-w-3xl pt-5 font-serif text-2xl leading-[1.27] tracking-[-0.025em] text-[#f2e9dc] sm:text-3xl lg:text-[2.65rem]">
+              Stylish collection and great service!
+            </blockquote>
+            <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold text-white/85">Faiyaz Mohammad</p>
+                <p className="mt-1 text-[9px] uppercase tracking-[0.16em] text-white/40">Google review · Local Guide</p>
+              </div>
+              <p className="max-w-xs text-[10px] leading-5 text-white/40">
+                Other reviewers also mention fabric quality, custom fits and the clothing selection.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="store" className="scroll-mt-24 bg-[#292622] text-white">
-        <div className="mx-auto grid max-w-7xl gap-9 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:px-12">
-          <div className="flex flex-col justify-center">
-            <SectionHeading
-              label="Come by and explore"
-              title="Your next favourite look is closer than you think."
-              text="Visit V-SQUARE on Vidhan Sabha Road, Saddu, Raipur. Call the store for current collection and availability details."
-              light
+      <section className="border-y border-white/10 bg-[#191612]">
+        <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 sm:py-20 lg:px-14 lg:py-24">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <SectionIntro
+              kicker="A closer look"
+              title="Inside V-SQUARE."
+              body="A selection of photos from the store’s public Google Maps listing."
+              dark
             />
-            <div className="mt-9 space-y-5 border-t border-white/15 pt-7">
+            <a href={mapsUrl} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#d6b17c] hover:gap-3">
+              View Google Maps listing <ArrowUpRight size={13} />
+            </a>
+          </div>
+          <div className="mt-9 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-4 sm:gap-4">
+            {storePhotos.map((photo, index) => (
+              <a
+                key={photo.src}
+                href={mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group block"
+                aria-label={photo.alt}
+              >
+                <Photo
+                  src={photo.src}
+                  alt={photo.alt}
+                  className={`aspect-[0.82] overflow-hidden border border-white/10 bg-[#29231b] transition duration-500 group-hover:border-[#c99c62]/70 group-hover:brightness-110 ${index === 0 ? "sm:aspect-[0.9]" : ""}`}
+                />
+                <p className="mt-3 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/45">{photo.label}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="store" className="bg-[#0c0b0a]">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[.85fr_1.15fr] lg:gap-14 lg:px-14 lg:py-24">
+          <div className="flex flex-col justify-center">
+            <SectionIntro
+              kicker="Find V-SQUARE"
+              title="Your next visit starts here."
+              body="Visit V-SQUARE on Vidhan Sabha Road, Saddu, Raipur. For collection, fabric and fitting enquiries, call the store before visiting."
+              dark
+            />
+            <div className="mt-9 space-y-5 border-t border-white/10 pt-7">
               <div className="flex gap-4">
-                <MapPin className="mt-0.5 shrink-0 text-[#c08a6d]" size={18} />
+                <MapPin className="mt-0.5 shrink-0 text-[#d6b17c]" size={17} />
                 <div>
-                  <p className="text-xs font-bold">Find the store</p>
-                  <p className="mt-1 max-w-sm text-xs leading-6 text-white/55">
-                    Vidhan Sabha Rd, Saddu, Raipur, Chhattisgarh 492014
-                  </p>
+                  <p className="text-xs font-semibold text-white/90">Address</p>
+                  <p className="mt-1 max-w-sm text-xs leading-6 text-white/50">Vidhan Sabha Rd, Saddu, Raipur, Chhattisgarh 492014</p>
                 </div>
               </div>
               <div className="flex gap-4">
-                <Clock3 className="mt-0.5 shrink-0 text-[#c08a6d]" size={18} />
+                <Clock3 className="mt-0.5 shrink-0 text-[#d6b17c]" size={17} />
                 <div>
-                  <p className="text-xs font-bold">Store hours</p>
-                  <p className="mt-1 text-xs leading-6 text-white/55">
-                    Google Maps currently lists closing time as 9:30 PM. Please call ahead for today&apos;s hours.
-                  </p>
+                  <p className="text-xs font-semibold text-white/90">Listed store hours</p>
+                  <p className="mt-1 text-xs leading-6 text-white/50">Google Maps currently shows a 9:30 PM closing time. Call to confirm today’s hours.</p>
                 </div>
               </div>
               <div className="flex gap-4">
-                <Phone className="mt-0.5 shrink-0 text-[#c08a6d]" size={18} />
+                <Phone className="mt-0.5 shrink-0 text-[#d6b17c]" size={17} />
                 <div>
-                  <p className="text-xs font-bold">Call V-SQUARE</p>
-                  <a href={phoneUrl} className="mt-1 inline-block text-xs text-white/65 transition hover:text-white">
-                    +91 77131 72293
-                  </a>
+                  <p className="text-xs font-semibold text-white/90">Phone</p>
+                  <a href={phoneUrl} className="mt-1 inline-block text-xs text-white/55 transition hover:text-[#e3c18e]">+91 77131 72293</a>
                 </div>
               </div>
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#f2ede5] px-6 text-xs font-bold text-[#292622] transition hover:bg-white"
-              >
+              <a href={mapsUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#d4b078] px-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#17130f] transition hover:bg-[#ecd2a7]">
                 Get directions <ArrowUpRight size={14} />
               </a>
-              <a
-                href={phoneUrl}
-                className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/25 px-6 text-xs font-bold text-white transition hover:bg-white/10"
-              >
+              <a href={phoneUrl} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 px-6 text-[10px] font-bold uppercase tracking-[0.1em] text-white transition hover:border-[#d6b17c] hover:text-[#d6b17c]">
                 <Phone size={14} /> Call now
               </a>
             </div>
           </div>
-          <div className="min-h-[310px] overflow-hidden bg-[#ded5ca] sm:min-h-[430px]">
+          <div className="min-h-[330px] overflow-hidden border border-white/10 bg-[#221e18] sm:min-h-[450px]">
             <iframe
               title="V-SQUARE location on Google Maps"
               src={mapsEmbedUrl}
               width="100%"
               height="100%"
-              style={{ minHeight: 310, border: 0, filter: "grayscale(0.45) contrast(0.96)" }}
+              style={{ minHeight: 330, border: 0, filter: "grayscale(0.55) contrast(1.05)" }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
@@ -538,37 +516,28 @@ export default function VSquareWebsite() {
         </div>
       </section>
 
-      <footer className="bg-[#1e1c19] px-5 py-8 text-white sm:px-8 lg:px-12">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+      <footer className="border-t border-white/10 bg-[#090807] px-5 py-8 text-white sm:px-8 lg:px-14">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-black tracking-[0.18em]">V-SQUARE</p>
-            <p className="mt-1 text-[10px] text-white/40">Vidhan Sabha Road · Saddu · Raipur</p>
+            <p className="text-sm font-semibold tracking-[0.17em]">V-SQUARE</p>
+            <p className="mt-1.5 text-[9px] text-white/35">Vidhan Sabha Road · Saddu · Raipur</p>
           </div>
-          <div className="flex flex-wrap items-center gap-5 text-[10px] font-semibold text-white/55">
-            <a href="#collections" className="transition hover:text-white">Collections</a>
-            <a href="#occasionwear" className="transition hover:text-white">Occasionwear</a>
-            <a href={mapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition hover:text-white">
-              Google Maps <ArrowUpRight size={12} />
-            </a>
+          <div className="flex flex-wrap items-center gap-5 text-[9px] font-semibold uppercase tracking-[0.14em] text-white/45">
+            <a href="#collections" className="transition hover:text-[#d6b17c]">Collections</a>
+            <a href="#experience" className="transition hover:text-[#d6b17c]">The V-SQUARE edit</a>
+            <a href="#reviews" className="transition hover:text-[#d6b17c]">Reviews</a>
+            <a href={mapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition hover:text-[#d6b17c]">Google Maps <ArrowUpRight size={11} /></a>
           </div>
-          <p className="text-[9px] uppercase tracking-[0.12em] text-white/30">Website concept by RDS Studio</p>
+          <p className="text-[8px] uppercase tracking-[0.17em] text-white/25">Website concept by RDS Studio</p>
         </div>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 gap-2 border-t border-black/10 bg-[#f6f3ed]/95 px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] shadow-[0_-10px_35px_rgba(35,30,25,.08)] backdrop-blur-xl md:hidden">
-        <a
-          href={phoneUrl}
-          className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#292622] px-3 text-[11px] font-bold text-white"
-        >
-          <Phone size={15} /> Call store
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-white/10 bg-[#0b0a09]/95 p-3 backdrop-blur-xl sm:hidden">
+        <a href={phoneUrl} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#d6b17c]/60 text-[10px] font-bold uppercase tracking-[0.1em] text-[#e3c18e]">
+          <Phone size={14} /> Call now
         </a>
-        <a
-          href={mapsUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#292622]/25 bg-transparent px-3 text-[11px] font-bold text-[#292622]"
-        >
-          <MapPin size={15} /> Get directions
+        <a href={mapsUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#d4b078] text-[10px] font-bold uppercase tracking-[0.1em] text-[#17130f]">
+          <MapPin size={14} /> Directions
         </a>
       </div>
     </main>
