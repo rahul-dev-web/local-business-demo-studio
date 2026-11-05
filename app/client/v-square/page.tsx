@@ -133,7 +133,7 @@ function SectionIntro({
       </h2>
       {body ? (
         <p
-          className={`mt-5 text-sm leading-7 sm:text-base sm:leading-8 ${
+          className={`mt-5 hidden text-sm leading-7 sm:block sm:text-base sm:leading-8 ${
             dark ? "text-white/60" : "text-[#756e64]"
           }`}
         >
@@ -162,7 +162,7 @@ export default function VSquareWebsite() {
           <p className="truncate text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">
             Vidhan Sabha Road · Saddu · Raipur
           </p>
-          <p className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#c9a16b] sm:text-[10px]">
+          <p className="hidden shrink-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#c9a16b] sm:block sm:text-[10px]">
             Style · Fabric · Occasion
           </p>
         </div>
@@ -212,7 +212,7 @@ export default function VSquareWebsite() {
 
       <section id="top" className="relative border-b border-white/[0.08] bg-[#11100e]">
         <div className="mx-auto grid max-w-[1440px] lg:min-h-[700px] lg:grid-cols-[0.88fr_1.12fr]">
-          <div className="relative z-10 flex flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:px-14 lg:py-24 xl:px-20">
+          <div className="relative z-10 hidden flex-col justify-center px-5 py-16 sm:px-8 sm:py-20 lg:flex lg:px-14 lg:py-24 xl:px-20">
             <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.26em] text-[#d6b17c] sm:text-[10px]">
               <GoldRule />
               Find your signature style
@@ -258,7 +258,7 @@ export default function VSquareWebsite() {
             </div>
           </div>
 
-          <div className="relative min-h-[430px] overflow-hidden border-y border-white/10 bg-[#28221b] sm:min-h-[560px] lg:min-h-full lg:border-y-0 lg:border-l">
+          <div className="relative min-h-[500px] overflow-hidden border-y border-white/10 bg-[#28221b] sm:min-h-[560px] lg:min-h-full lg:border-y-0 lg:border-l">
             <Photo
               src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1800&q=90"
               alt="Fashion editorial showing a tailored menswear look"
@@ -267,11 +267,11 @@ export default function VSquareWebsite() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a09]/90 via-[#0b0a09]/10 to-[#0b0a09]/10" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#11100e]/20 via-transparent to-transparent" />
-            <div className="absolute left-5 top-5 flex items-center gap-3 border border-white/20 bg-black/20 px-4 py-3 backdrop-blur-sm sm:left-8 sm:top-8">
+            <div className="absolute left-5 top-5 hidden items-center gap-3 border border-white/20 bg-black/20 px-4 py-3 backdrop-blur-sm sm:left-8 sm:top-8 sm:flex">
               <span className="font-serif text-2xl text-[#e0bd88]">V.</span>
               <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/80">The V-SQUARE edit</span>
             </div>
-            <div className="absolute bottom-7 left-5 right-5 flex items-end justify-between gap-4 sm:bottom-10 sm:left-9 sm:right-9 lg:bottom-12 lg:left-12 lg:right-12">
+            <div className="absolute bottom-7 left-5 right-5 hidden items-end justify-between gap-4 sm:bottom-10 sm:left-9 sm:right-9 md:flex lg:bottom-12 lg:left-12 lg:right-12">
               <div className="max-w-sm">
                 <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#e1bd85]">Dress for the moment</p>
                 <p className="mt-3 font-serif text-3xl leading-[1.04] tracking-[-0.035em] text-white sm:text-4xl lg:text-[2.8rem]">
@@ -282,11 +282,30 @@ export default function VSquareWebsite() {
                 Saddu · Raipur
               </span>
             </div>
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#0b0a09] via-[#0b0a09]/90 to-transparent px-5 pb-7 pt-24 md:hidden">
+              <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#e1bd85]">
+                Find your signature style
+              </p>
+              <h1 className="mt-3 max-w-[520px] font-serif text-[2.8rem] leading-[0.94] tracking-[-0.055em] text-white sm:text-5xl">
+                Style that makes a statement.
+              </h1>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href="#collections"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#d4b078] px-5 text-[10px] font-bold uppercase tracking-[0.08em] text-[#17130f]"
+                >
+                  Explore styles <ArrowRight size={14} />
+                </a>
+                <span className="text-[10px] font-semibold text-white/75">
+                  <span className="text-[#e1bd85]">★ 4.8/5</span> · 305 reviews
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-[#181613]">
+      <section className="hidden border-b border-white/10 bg-[#181613] sm:block">
         <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-y-5 px-5 py-7 sm:grid-cols-4 sm:px-8 lg:px-14 lg:py-8">
           {[
             { icon: Gem, title: "Quality fabrics", detail: "Mentioned by shoppers" },
@@ -324,9 +343,9 @@ export default function VSquareWebsite() {
             </a>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 lg:grid-cols-4">
+          <div className="mt-10 grid grid-flow-col auto-cols-[84%] snap-x snap-mandatory gap-3 overflow-x-auto pb-3 sm:mt-14 sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-2 sm:gap-4 sm:overflow-visible lg:grid-cols-4">
             {collections.map((item) => (
-              <a key={item.number} href="#store" className="group relative block overflow-hidden border border-white/10 bg-[#211d18]">
+              <a key={item.number} href="#store" className="group relative block snap-start overflow-hidden border border-white/10 bg-[#211d18]">
                 <Photo
                   src={item.image}
                   alt={item.alt}
@@ -346,7 +365,7 @@ export default function VSquareWebsite() {
               </a>
             ))}
           </div>
-          <p className="mt-4 text-[9px] leading-5 text-white/35">
+          <p className="mt-4 text-[9px] leading-5 text-white/35 sm:block">
             Editorial photographs are for visual inspiration. Please contact the store to confirm current styles and availability.
           </p>
         </div>
@@ -532,7 +551,7 @@ export default function VSquareWebsite() {
         </div>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-white/10 bg-[#0b0a09]/95 p-3 backdrop-blur-xl sm:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-white/10 bg-[#0b0a09]/95 px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:hidden">
         <a href={phoneUrl} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#d6b17c]/60 text-[10px] font-bold uppercase tracking-[0.1em] text-[#e3c18e]">
           <Phone size={14} /> Call now
         </a>
