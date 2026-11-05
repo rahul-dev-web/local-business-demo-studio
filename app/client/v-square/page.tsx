@@ -271,7 +271,7 @@ export default function VSquareWebsite() {
               <span className="font-serif text-2xl text-[#e0bd88]">V.</span>
               <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/80">The V-SQUARE edit</span>
             </div>
-            <div className="absolute bottom-7 left-5 right-5 hidden items-end justify-between gap-4 sm:bottom-10 sm:left-9 sm:right-9 md:flex lg:bottom-12 lg:left-12 lg:right-12">
+            <div className="absolute bottom-7 left-5 right-5 hidden items-end justify-between gap-4 sm:bottom-10 sm:left-9 sm:right-9 lg:flex lg:bottom-12 lg:left-12 lg:right-12">
               <div className="max-w-sm">
                 <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#e1bd85]">Dress for the moment</p>
                 <p className="mt-3 font-serif text-3xl leading-[1.04] tracking-[-0.035em] text-white sm:text-4xl lg:text-[2.8rem]">
@@ -282,7 +282,7 @@ export default function VSquareWebsite() {
                 Saddu · Raipur
               </span>
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#0b0a09] via-[#0b0a09]/90 to-transparent px-5 pb-7 pt-24 md:hidden">
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#0b0a09] via-[#0b0a09]/90 to-transparent px-5 pb-7 pt-24 lg:hidden">
               <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#e1bd85]">
                 Find your signature style
               </p>
