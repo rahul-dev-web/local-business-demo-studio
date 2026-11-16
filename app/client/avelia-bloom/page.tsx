@@ -2,10 +2,10 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import {
-  ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight,
+  ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight,
   Heart, Leaf, Menu, Minus, PackageCheck, Plus, Search, ShieldCheck, ShoppingBag,
-  Sparkles, Truck, X, MessageCircle, Instagram, Mail, Phone, MapPin, SlidersHorizontal,
-  RefreshCw, ReceiptText, LayoutDashboard, Eye, Palette, Ruler, Clock3
+  Sparkles, Truck, X, MessageCircle, Instagram, Mail, SlidersHorizontal,
+  ReceiptText, LayoutDashboard, Ruler
 } from "lucide-react";
 
 type Category = "all" | "black-vibes" | "double-take" | "beige-mood" | "custom";
@@ -81,8 +81,6 @@ export default function AveliaBloomPreview(){
   const [chatAnswer,setChatAnswer] = useState("Hi! I’m the Avelia Bloom demo assistant. Ask about the bag, customisation or delivery.");
   const [pin,setPin] = useState("");
   const [pinChecked,setPinChecked] = useState(false);
-  const [demoOrderStatus,setDemoOrderStatus] = useState("Payment pending");
-  const [mobileNotice,setMobileNotice] = useState(false);
 
   useEffect(()=>{ try { const saved = window.localStorage.getItem("avelia-demo-cart"); if(saved) setCart(JSON.parse(saved) as CartItem[]); const last=window.localStorage.getItem("avelia-demo-order"); if(last){ const parsed=JSON.parse(last); setOrderId(parsed.id || "AVB-DEMO-1024"); setTrackingCode(parsed.id || "AVB-DEMO-1024"); } } catch {} },[]);
   useEffect(()=>{ try { window.localStorage.setItem("avelia-demo-cart",JSON.stringify(cart)); } catch {} },[cart]);
@@ -103,7 +101,7 @@ export default function AveliaBloomPreview(){
   const changeQty=(index:number,delta:number)=>setCart((current)=>current.map((item,i)=>i===index?{...item,qty:item.qty+delta}:item).filter((item)=>item.qty>0));
   const removeItem=(index:number)=>setCart((current)=>current.filter((_,i)=>i!==index));
   const chooseCategory=(id:Category)=>{setCategory(id);setMegaOpen(false);setMenuOpen(false);document.getElementById("shop")?.scrollIntoView({behavior:"smooth"});};
-  const submitDemoOrder=(e:FormEvent<HTMLFormElement>)=>{e.preventDefault();const id="AVB-DEMO-"+Math.floor(10000+Math.random()*89999);setOrderId(id);setTrackingCode(id);setDemoOrderStatus("Demo order received");setCheckoutDone(true);try{window.localStorage.setItem("avelia-demo-order",JSON.stringify({id,createdAt:new Date().toISOString(),status:"Demo order received"}));}catch{}};
+  const submitDemoOrder=(e:FormEvent<HTMLFormElement>)=>{e.preventDefault();const id="AVB-DEMO-"+Math.floor(10000+Math.random()*89999);setOrderId(id);setTrackingCode(id);setCheckoutDone(true);try{window.localStorage.setItem("avelia-demo-order",JSON.stringify({id,createdAt:new Date().toISOString(),status:"Demo order received"}));}catch{}};
   const answerChat=(kind:string)=>{const answers:Record<string,string>={"Product details":"The current brief lists a 350 GSM printed canvas tote, approx. 160 g and 14 × 16 inches. The measurement orientation, gusset and packed weight still need owner confirmation.","Customisation":"Vibe It Your Way is a visual customisation concept. Final artwork limits, print method, personalisation fee and production approval are not connected yet.","Shipping":"Delhivery is the planned shipping partner. Live serviceability, rates, pickup and tracking are not connected in this prototype.","Returns":"The return and exchange policy is still awaiting owner approval. No live purchase should be accepted until the final policy is published."};setChatAnswer(answers[kind]||"This is a prototype assistant. For a real enquiry, contact the brand on WhatsApp at +91 97625 20090.");};
   const waUrl="https://wa.me/919762520090?text="+encodeURIComponent("Hi Avelia Bloom, I saw your website preview and would like to know more about the tote bags.");
   const trackDemo=()=>setTrackSearched(true);
