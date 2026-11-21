@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -50,7 +50,7 @@
 
 /* Avelia Bloom — first display-font review option */
 .avelia-hero-title {
-  font-family: "DM Serif Display", Georgia, serif;
+  font-family: "Bodoni Moda", Georgia, serif;
   font-weight: 600;
   letter-spacing: -0.055em;
 }
