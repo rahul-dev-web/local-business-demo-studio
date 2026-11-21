@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -44,4 +45,12 @@
     right: 12px;
     padding: 9px 11px;
   }
+}
+
+
+/* Avelia Bloom — first display-font review option */
+.avelia-hero-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.055em;
 }
