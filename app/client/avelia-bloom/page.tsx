@@ -112,8 +112,7 @@ export default function AveliaBloomPreview(){
       <header className="sticky top-0 z-40 border-b border-[#6d5743]/10 bg-[#f7f3ec]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3.5 sm:px-7 lg:px-12 lg:py-4">
           <button type="button" className="inline-flex size-10 items-center justify-center lg:hidden" aria-label="Open menu" onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen?<X size={20}/>:<Menu size={20}/>}</button>
-          <a href="#top" className="group flex items-center gap-2.5">
-            <span className="flex size-9 items-center justify-center rounded-full border border-[#9b8064]/40 text-[#4b3829]"><svg viewBox="0 0 32 32" className="size-6" fill="none" aria-hidden="true"><path d="M16 27 C11 22 7 19 8 13 C9 8 14 8 16 13 C18 8 23 8 24 13 C25 19 21 22 16 27Z" stroke="currentColor" strokeWidth="1.2"/><path d="M16 13 C14 10 12 7 15 4 M16 13 C18 9 20 7 18 4" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"/></svg></span>
+          <a href="#top" className="group flex items-center">
             <span><span className="block font-serif text-[21px] leading-none tracking-[.12em] sm:text-[24px]">AVELIA BLOOM</span><span className="mt-1 block text-[7px] uppercase tracking-[.34em] text-[#8b7560]">Carry love, carry vibe</span></span>
           </a>
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
